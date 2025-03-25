@@ -15,11 +15,11 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="relative flex flex-col py-6 min-h-screen">
       <Navbar className="mt-4" showLogo={true} />
-      <main className="w-full px-[80px] py-[40px] flex flex-col items-center justify-center flex-grow mt-16">
+      <main className="w-full px-[80px] py-[40px] flex flex-col   flex-grow mt-16">
         {children}
       </main>
       <footer
-        className="w-full h-[88px] px-[140px] flex items-center justify-between border-t border-b border-[#322E52] text-center text-white shadow"
+        className="w-full h-[88px] px-[140px] my-[28px] flex items-center justify-between border-t border-b border-[#322E52] text-center text-white shadow"
         style={{
           borderTopWidth: 0.25,
           borderBottomWidth: "0.25px",

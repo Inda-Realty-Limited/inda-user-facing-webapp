@@ -19,7 +19,7 @@ export default function Index() {
   return (
     <Container
       type="main"
-      className="relative h-screen flex flex-col items-center justify-center"
+      className="relative  flex flex-col items-center justify-center"
       style={{
         background: `
           linear-gradient(0deg, #141414, #141414),
@@ -35,10 +35,10 @@ export default function Index() {
         />
       </div>
       <Container className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-        <div className="absolute top-8">
+        <div className="absolute top-[50px]">
           <Image src="/images/logo.png" alt="logo" width={100} height={35} />
         </div>
-        <YStack className="flex flex-col items-center justify-center mt-16 w-[50%]">
+        <YStack gap="gap-[28px]" className="flex flex-col mt-[126px] w-[50%]">
           <Text className="text-white text-center" fow={700} fos={60}>
             The Future of Real Estate Investing Starts Here
           </Text>
@@ -53,7 +53,7 @@ export default function Index() {
             Get Started
           </Button>
         </YStack>
-        <Navbar className="mt-16" />
+        <Navbar className="mt-32" />
         <Icon className="mt-6" name="double_arrow_down" />
       </Container>
       <Container className="absolute bg-primary h-[142px] bottom-0 left-0 w-full flex items-center justify-center">

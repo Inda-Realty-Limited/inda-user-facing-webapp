@@ -6,8 +6,9 @@ interface TextProps {
   fos?: number;
   fow?: CSSProperties["fontWeight"];
   fst?: CSSProperties["fontStyle"];
-  fof?: "p" | "m" | "s"; // 'p' for PPNeueMontreal, 'm' for Montserrat, 's' for Satoshi
+  fof?: "p" | "m" | "s" | "l"; // 'p' for PPNeueMontreal, 'm' for Montserrat, 's' for Satoshi, 'l' for Lufga
   onClick?: () => void;
+  underlined?: boolean;
 }
 
 export const Text = ({
@@ -17,6 +18,7 @@ export const Text = ({
   fow,
   fst,
   fof = "p",
+  underlined,
   onClick,
 }: TextProps) => {
   const baseStyles = "";
@@ -25,12 +27,15 @@ export const Text = ({
       ? "Montserrat, sans-serif"
       : fof === "s"
       ? "Satoshi, sans-serif"
+      : fof === "l"
+      ? "Lufga, sans-serif"
       : "PPNeueMontreal, sans-serif";
   const style = {
     fontSize: fos || 16,
     fontWeight: fow || "normal",
     fontStyle: fst || "normal",
     fontFamily,
+    textDecoration: underlined ? "underline" : "none",
   };
 
   return (

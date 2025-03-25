@@ -1,13 +1,16 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { Text, XStack } from "../base";
 
 interface NavbarProps {
   className?: string;
+  showLogo?: boolean;
 }
 
-export const Navbar = ({ className = "" }: NavbarProps) => {
+export const Navbar = ({ className = "", showLogo = false }: NavbarProps) => {
   const router = useRouter();
   const navItems = [
+    //@ts-ignore
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Discover", href: "/discover" },
@@ -21,7 +24,12 @@ export const Navbar = ({ className = "" }: NavbarProps) => {
     <nav
       className={`w-[83%] border border-[#FFFFFF33] rounded-[40px] mx-auto py-4 ${className}`}
     >
-      <XStack className="justify-between px-[40px] w-full">
+      <XStack className="justify-between px-[40px] w-full items-center">
+        {showLogo && (
+          <div className="mr-4">
+            <Image src="/images/logo.png" alt="logo" width={50} height={17} />
+          </div>
+        )}
         {navItems.map((item) => {
           const isActive = router.pathname === item.href;
           return (
@@ -29,7 +37,7 @@ export const Navbar = ({ className = "" }: NavbarProps) => {
               key={item.href}
               fof="m"
               fos={20}
-              fow={isActive ? 600 : undefined}
+              fow={isActive ? 600 : 400}
               className={`cursor-pointer transition-colors ${
                 isActive ? "text-white" : "text-[#FFFFFFB2] hover:text-gray-300"
               }`}

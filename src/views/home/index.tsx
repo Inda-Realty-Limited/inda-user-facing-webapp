@@ -1,32 +1,37 @@
 import { Button, Input, Text, XStack, YStack } from "@/components/base";
 import { Container, Icon, Navbar } from "@/components/inc";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function Home() {
+export default function Index() {
   const [email, setEmail] = useState("");
+  const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
+  const handleGetStarted = () => {
+    router.push("/about");
+  };
+
   return (
     <Container
       type="main"
-      className="relative h-[974px] flex flex-col items-center justify-center"
-      // style={{
-      //   background: `
-      //     linear-gradient(0deg, #222222, #222222),
-      //     linear-gradient(180deg, rgba(127, 102, 255, 0.01) 40%, rgba(42, 122, 241, 0.1) 100%)
-      //   `,
-      // }}
+      className="relative h-screen flex flex-col items-center justify-center"
+      style={{
+        background: `
+          linear-gradient(0deg, #141414, #141414),
+          linear-gradient(180deg, rgba(127, 102, 255, 0.01) 40%, rgba(42, 122, 241, 0.1) 100%)
+        `,
+      }}
     >
-      <div className="w-full h-full overflow-hidden">
-        <Image
+      <div className="w-[90%] h-full overflow-hidden">
+        <img
           src="/images/hero-lines.png"
           alt="hero"
-          layout="fill"
-          objectFit="contain"
+          className="object-cover w-full h-full"
         />
       </div>
       <Container className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
@@ -43,6 +48,7 @@ export default function Home() {
           <Button
             textClassName="text-white"
             className="bg-primary w-[135px] h-[52px] rounded-[10px]"
+            onClick={handleGetStarted}
           >
             Get Started
           </Button>

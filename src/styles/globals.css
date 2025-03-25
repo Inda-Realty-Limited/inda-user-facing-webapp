@@ -1,4 +1,6 @@
 @import "tailwindcss";
+
+/* Montserrat */
 @font-face {
   font-family: "Montserrat";
   src: url("/fonts/montserrat/Montserrat-Regular.ttf") format("truetype");
@@ -14,6 +16,114 @@
 }
 
 @font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-ExtraBoldItalic.ttf")
+    format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-ExtraLightItalic.ttf")
+    format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat/Montserrat-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* PPNeueMontreal */
+@font-face {
   font-family: "PPNeueMontreal";
   src: url("/fonts/ppneuemontreal/ppneuemontreal-book.woff") format("woff");
   font-weight: 400;
@@ -24,6 +134,106 @@
   font-family: "PPNeueMontreal";
   src: url("/fonts/ppneuemontreal/ppneuemontreal-bold.woff") format("woff");
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PPNeueMontreal";
+  src: url("/fonts/ppneuemontreal/ppneuemontreal-italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "PPNeueMontreal";
+  src: url("/fonts/ppneuemontreal/ppneuemontreal-medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PPNeueMontreal";
+  src: url("/fonts/ppneuemontreal/ppneuemontreal-semibolditalic.woff")
+    format("woff");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "PPNeueMontreal";
+  src: url("/fonts/ppneuemontreal/ppneuemontreal-thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+/* Satoshi */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-BlackItalic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Regular.otf") format("opentype");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -43,4 +253,8 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+.border-footer {
+  border-width: 0.25px;
 }

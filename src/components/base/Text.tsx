@@ -6,7 +6,7 @@ interface TextProps {
   fos?: number;
   fow?: CSSProperties["fontWeight"];
   fst?: CSSProperties["fontStyle"];
-  fof?: "p" | "m"; // 'p' for PPNeueMontreal, 'm' for Montserrat
+  fof?: "p" | "m" | "s"; // 'p' for PPNeueMontreal, 'm' for Montserrat, 's' for Satoshi
   onClick?: () => void;
 }
 
@@ -17,20 +17,28 @@ export const Text = ({
   fow,
   fst,
   fof = "p",
+  onClick,
 }: TextProps) => {
   const baseStyles = "";
   const fontFamily =
-    fof === "m" ? "Montserrat, sans-serif" : "PPNeueMontreal, sans-serif";
+    fof === "m"
+      ? "Montserrat, sans-serif"
+      : fof === "s"
+      ? "Satoshi, sans-serif"
+      : "PPNeueMontreal, sans-serif";
   const style = {
     fontSize: fos || 16,
     fontWeight: fow || "normal",
     fontStyle: fst || "normal",
     fontFamily,
-    onClick: () => {},
   };
 
   return (
-    <span className={`${baseStyles} ${className}`} style={style}>
+    <span
+      className={`${baseStyles} ${className}`}
+      style={style}
+      onClick={onClick}
+    >
       {children}
     </span>
   );

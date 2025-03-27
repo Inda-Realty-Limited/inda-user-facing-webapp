@@ -48,7 +48,7 @@ export default function About() {
               decisions, reduce risks, and invest confidently.
             </Text>
           </YStack>
-          <div className="w-[40%]">
+          <div className="w-[48%]">
             <img
               src="/images/home-hero.png"
               alt="About"

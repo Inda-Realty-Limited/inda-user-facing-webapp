@@ -6,3 +6,4 @@ export * from "./Icon";
 export * from "./Navbar";
 export * from "./PropertyCard";
 export * from "./Slider";
+export * from "./Table";

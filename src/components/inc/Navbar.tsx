@@ -10,7 +10,6 @@ interface NavbarProps {
 export const Navbar = ({ className = "", showLogo = false }: NavbarProps) => {
   const router = useRouter();
   const navItems = [
-    //@ts-ignore
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Discover", href: "/discover" },

@@ -1,3 +1,4 @@
+export * from "./Breadcrumb";
 export * from "./Card";
 export * from "./Container";
 export * from "./Footer";

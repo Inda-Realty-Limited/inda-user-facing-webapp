@@ -1,5 +1,5 @@
 import { Text, XStack, YStack } from "@/components/base";
-import { Icon } from "@/components/inc";
+import { Breadcrumb } from "@/components/inc";
 import { Layout } from "@/layouts";
 import { useState } from "react";
 
@@ -12,21 +12,7 @@ export default function About() {
 
   return (
     <Layout>
-      <XStack gap="gap-[10px]">
-        <Text
-          underlined
-          fow={400}
-          fof="l"
-          fos={18}
-          className="text-white text-decoration-underline"
-        >
-          Home
-        </Text>
-        <Icon name="arrow_right" />
-        <Text fow={400} fof="l" fos={18} className="text-white">
-          About
-        </Text>
-      </XStack>
+      <Breadcrumb items={[{ label: "About" }]} />
       <section className="my-[88px]">
         <XStack className="justify-between">
           <YStack gap="gap-[20px]" className="items-start w-[40%]">

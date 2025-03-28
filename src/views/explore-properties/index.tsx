@@ -1,4 +1,4 @@
-import { Button, Text, YStack } from "@/components/base";
+import { Text, YStack } from "@/components/base";
 import { Breadcrumb, Table } from "@/components/inc";
 import { Property, properties } from "@/constants/data";
 import { Layout } from "@/layouts";
@@ -18,7 +18,7 @@ export default function ExploreProperties() {
         <img
           src={value}
           alt="Property"
-          className="w-[80px] h-[80px] object-cover rounded-[10px]"
+          className="w-[125px] h-[80px] object-cover rounded-[8px]"
         />
       ),
     },
@@ -39,9 +39,9 @@ export default function ExploreProperties() {
       header: "",
       accessor: "actions",
       render: (_, row) => (
-        <Button className="bg-primary text-white px-4 py-2 rounded-[10px]">
+        <button className="h-[37px] w-[120px] rounded-[8px] bg-primary text-sm text-white cursor-pointer">
           Make an Offer
-        </Button>
+        </button>
       ),
     },
   ];

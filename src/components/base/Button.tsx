@@ -21,7 +21,7 @@ export const Button = ({
   const baseStyles =
     "px-4 cursor-pointer py-2 rounded-md font-medium focus:outline-none";
   const variantStyles = {
-    primary: "bg-primary text-white ",
+    primary: `bg-primary text-white ${className}`,
     secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300",
   };
 

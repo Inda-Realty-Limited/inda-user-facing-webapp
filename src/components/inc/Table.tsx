@@ -4,7 +4,7 @@ import { ReactNode, useState } from "react";
 import { Icon } from "./Icon";
 
 interface TableColumn {
-  header: string;
+  header: React.ReactNode;
   accessor: string;
   render?: (value: any, row: any) => ReactNode;
 }

@@ -21,7 +21,7 @@ export const Icon = ({
   return (
     <div
       style={{ background: bg, width: size + padding, height: size + padding }}
-      className={`flex justify-center items-center ${className}`}
+      className={`flex justify-center cursor-pointer items-center ${className}`}
     >
       <ReactSVG
         src={`/icons/${name}.svg`}

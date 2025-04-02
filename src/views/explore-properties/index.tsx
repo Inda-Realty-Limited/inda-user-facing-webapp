@@ -1,11 +1,11 @@
 import { Text, YStack } from "@/components/base";
-import { Breadcrumb, Table } from "@/components/inc";
+import { Breadcrumb, Icon, Table, Tooltip } from "@/components/inc";
 import { Property, properties } from "@/constants/data";
 import { Layout } from "@/layouts";
 
 export default function ExploreProperties() {
   interface Column {
-    header: string;
+    header: React.ReactNode;
     accessor: keyof Property | "actions";
     render?: (value: any, row?: Property) => React.ReactNode;
   }
@@ -29,7 +29,63 @@ export default function ExploreProperties() {
     { header: "1yr Total Return", accessor: "oneYearReturn" },
     { header: "5yr Total Return", accessor: "fiveYearReturn" },
     {
-      header: "Investment Score",
+      header: (
+        <div className="flex items-center gap-[1px]">
+          <span>Investment Score</span>
+          <Tooltip
+            content={
+              <YStack
+                gap="gap-[1px]"
+                align="start"
+                className="overflow-hidden h-full w-full text-white"
+              >
+                {[
+                  {
+                    title: "High Yield Low Risk",
+                    description: "Strong rental returns with minimal downside",
+                  },
+                  {
+                    title: "Cash Flow King",
+                    description:
+                      "Exceptional rental yield, ideal for passive income",
+                  },
+                  {
+                    title: "Below Market Deal",
+                    description:
+                      "Priced under market value, instant equity upside",
+                  },
+                  {
+                    title: "Fast Appreciation",
+                    description:
+                      "High-growth area with strong capital gains expected",
+                  },
+                  {
+                    title: "Hot Demand",
+                    description:
+                      "Limited availability, multiple investors interested",
+                  },
+                ].map((item, index) => (
+                  <YStack
+                    key={index}
+                    gap=""
+                    align="start"
+                    className="border-b p-[10px] w-full px-5 border-[#FFFFFF1A]"
+                  >
+                    <Text fos={14} fow={400}>
+                      {item.title}
+                    </Text>
+                    <Text fos={12} fow={100}>
+                      {item.description}
+                    </Text>
+                  </YStack>
+                ))}
+              </YStack>
+            }
+          >
+            <Icon name="info" />
+          </Tooltip>
+        </div>
+      ),
       accessor: "investmentScore",
       render: (value: string) => (
         <span className="text-green-500">{value}</span>

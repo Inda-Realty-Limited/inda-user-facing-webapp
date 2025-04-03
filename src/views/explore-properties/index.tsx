@@ -1,9 +1,15 @@
 import { Text, YStack } from "@/components/base";
-import { Breadcrumb, Icon, Table, Tooltip } from "@/components/inc";
+import { Breadcrumb, Icon, Modal, Table, Tooltip } from "@/components/inc";
 import { Property, properties } from "@/constants/data";
 import { Layout } from "@/layouts";
+import React, { useState } from "react";
 
 export default function ExploreProperties() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null
+  );
+
   interface Column {
     header: React.ReactNode;
     accessor: keyof Property | "actions";
@@ -95,7 +101,13 @@ export default function ExploreProperties() {
       header: "",
       accessor: "actions",
       render: (_, row) => (
-        <button className="h-[37px] w-[120px] rounded-[8px] bg-primary text-sm text-white cursor-pointer">
+        <button
+          className="h-[37px] w-[120px] rounded-[8px] bg-primary text-sm text-white cursor-pointer"
+          onClick={() => {
+            setSelectedProperty(row || null);
+            setIsModalOpen(true);
+          }}
+        >
           Make an Offer
         </button>
       ),
@@ -121,6 +133,29 @@ export default function ExploreProperties() {
       <section className="my-[40px]">
         <Table columns={columns} data={properties} />
       </section>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Make an Offer"
+      >
+        <div>
+          <h2 className="text-lg font-bold mb-4">Make an Offer</h2>
+          {selectedProperty && (
+            <div>
+              <p>Property: {selectedProperty.address}</p>
+              <p>Price: {selectedProperty.price}</p>
+              {/* Add form or additional details here */}
+            </div>
+          )}
+          <button
+            className="mt-4 px-4 py-2 bg-primary text-white rounded"
+            onClick={() => setIsModalOpen(false)}
+          >
+            Close
+          </button>
+        </div>
+      </Modal>
     </Layout>
   );
 }

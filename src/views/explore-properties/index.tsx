@@ -1,4 +1,4 @@
-import { Text, YStack } from "@/components/base";
+import { Input, Text, YStack } from "@/components/base";
 import { Breadcrumb, Icon, Modal, Table, Tooltip } from "@/components/inc";
 import { Property, properties } from "@/constants/data";
 import { Layout } from "@/layouts";
@@ -139,21 +139,40 @@ export default function ExploreProperties() {
         onClose={() => setIsModalOpen(false)}
         title="Make an Offer"
       >
-        <div>
-          <h2 className="text-lg font-bold mb-4">Make an Offer</h2>
-          {selectedProperty && (
-            <div>
-              <p>Property: {selectedProperty.address}</p>
-              <p>Price: {selectedProperty.price}</p>
-              {/* Add form or additional details here */}
-            </div>
-          )}
-          <button
-            className="mt-4 px-4 py-2 bg-primary text-white rounded"
-            onClick={() => setIsModalOpen(false)}
-          >
-            Close
-          </button>
+        <div className="w-[555px] h-[819px] p-6 rounded-[12px] bg-[#292929]">
+          <div className="w-[476px]"></div>
+          <YStack gap="gap-[16px]" align="start">
+            <Text
+              fow={700}
+              fos={32}
+              className="text-white text-center pt-[30px]"
+            >
+              We'll be in touch
+            </Text>
+            <Input
+              label="Name"
+              value=""
+              onChange={() => {}}
+              placeholder="Enter your name"
+              className="w-full mt-4"
+            />
+            <Input
+              label="Email"
+              type="email"
+              value=""
+              onChange={() => {}}
+              placeholder="Enter your email"
+              className="w-full"
+            />
+            <Input
+              label="Phone"
+              type="tel"
+              value=""
+              onChange={() => {}}
+              placeholder="Enter your phone number"
+              className="w-full"
+            />
+          </YStack>
         </div>
       </Modal>
     </Layout>

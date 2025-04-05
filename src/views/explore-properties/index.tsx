@@ -176,94 +176,102 @@ export default function ExploreProperties() {
 
   return (
     <Layout>
-      <Breadcrumb items={[{ label: "Explore Properties" }]} />
-
-      <section className="my-[60px]">
-        <YStack gap="gap-[16px]">
-          <Text fow={700} fos={48} className="text-white text-center">
-            Smart Investments Start Here <br /> Discover Profitable Properties
-          </Text>
-          <Text fow={500} fos={20} className="text-white text-center">
-            Browse high-yield properties and make data-driven investment
-            decisions with confidence
-          </Text>
-        </YStack>
-      </section>
-
-      <section className="my-[40px]">
-        <Table columns={columns} data={properties} />
-      </section>
-
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Make an Offer"
-      >
-        <div className="w-[555px] h-[819px] p-6 rounded-[12px] bg-[#292929]">
-          <div className="w-[476px]">
-            <YStack
-              gap="gap-[16px]"
-              className="w-[412px] mx-[40px]"
-              align="start"
-            >
-              <Text
-                fow={700}
-                fos={32}
-                className="text-white text-center pt-[30px]"
-              >
-                We'll be in touch
-              </Text>
-              {inputFields.map((field, index) => (
-                <Input
-                  key={index}
-                  label={field.label}
-                  type={field.type}
-                  value={field.value}
-                  onChange={field.onChange}
-                  placeholder={field.placeholder}
-                  className="w-[412px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px] outline-none focus:outline-none"
-                />
-              ))}
-              <div className="flex flex-col w-full">
-                <label className="mb-1 text-white">Financing Option</label>
-                <select
-                  value={financingOption}
-                  onChange={(e) => setFinancingOption(e.target.value)}
-                  className="w-full h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px] px-3 py-2 outline-none focus:ring-2 focus:ring-primary"
-                >
-                  {financingOptions.map((option) => (
-                    <option
-                      className="w-[412px]"
-                      key={option.value}
-                      value={option.value}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <Button
-                variant="primary"
-                textClassName="text-white"
-                className="w-full mt-2 h-[64px] bg-primary text-white rounded-[8px]"
-                onClick={() => {
-                  // Handle form submission logic here
-                  console.log("Form submitted", {
-                    name,
-                    email,
-                    phone,
-                    budget,
-                    financingOption,
-                  });
-                  setIsModalOpen(false);
-                }}
-              >
-                Submit
-              </Button>
-            </YStack>
-          </div>
+      <div className="relative w-full h-full">
+        <div className="absolute top-0 left-0 justify-center flex">
+          <img
+            src="/images/bg-pattern.png"
+            alt="Explore Properties"
+            className="object-contain "
+          />
         </div>
-      </Modal>
+        <Breadcrumb items={[{ label: "Explore Properties" }]} />
+
+        <section className="my-[60px]">
+          <YStack gap="gap-[16px]">
+            <Text fow={700} fos={48} className="text-white text-center">
+              Smart Investments Start Here <br /> Discover Profitable Properties
+            </Text>
+            <Text fow={500} fos={20} className="text-white text-center">
+              Browse high-yield properties and make data-driven investment
+              decisions with confidence
+            </Text>
+          </YStack>
+        </section>
+
+        <section className="my-[40px]">
+          <Table columns={columns} data={properties} />
+        </section>
+
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Make an Offer"
+        >
+          <div className="w-[555px] h-[819px] p-6 rounded-[12px] bg-[#292929]">
+            <div className="w-[476px]">
+              <YStack
+                gap="gap-[16px]"
+                className="w-[412px] mx-[40px]"
+                align="start"
+              >
+                <Text
+                  fow={700}
+                  fos={32}
+                  className="text-white text-center pt-[30px]"
+                >
+                  We'll be in touch
+                </Text>
+                {inputFields.map((field, index) => (
+                  <Input
+                    key={index}
+                    label={field.label}
+                    type={field.type}
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder={field.placeholder}
+                    className="w-[412px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px] outline-none focus:outline-none"
+                  />
+                ))}
+                <div className="flex flex-col w-full">
+                  <label className="mb-1 text-white">Financing Option</label>
+                  <select
+                    value={financingOption}
+                    onChange={(e) => setFinancingOption(e.target.value)}
+                    className="w-full h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px] px-3 py-2 outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    {financingOptions.map((option) => (
+                      <option
+                        className="w-[412px]"
+                        key={option.value}
+                        value={option.value}
+                      >
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <Button
+                  variant="primary"
+                  textClassName="text-white"
+                  className="w-full mt-2 h-[64px] bg-primary text-white rounded-[8px]"
+                  onClick={() => {
+                    console.log("Form submitted", {
+                      name,
+                      email,
+                      phone,
+                      budget,
+                      financingOption,
+                    });
+                    setIsModalOpen(false);
+                  }}
+                >
+                  Submit
+                </Button>
+              </YStack>
+            </div>
+          </div>
+        </Modal>
+      </div>
     </Layout>
   );
 }

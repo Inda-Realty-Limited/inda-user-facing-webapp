@@ -371,3 +371,7 @@ body {
 .border-footer {
   border-width: 0.25px;
 }
+
+.no-scroll {
+  overflow: hidden;
+}

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -15,6 +15,18 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       onClose();
     }
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 

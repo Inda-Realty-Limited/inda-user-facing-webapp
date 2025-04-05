@@ -1,7 +1,7 @@
 import { Input, Text, XStack, YStack } from "@/components/base";
 import { Modal } from "@/components/inc/Modal";
 import PriceRangeFilter from "@/views/explore-properties/components/PriceRangeFilter";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Icon } from "./Icon";
 
 interface TableColumn {
@@ -18,20 +18,103 @@ interface TableProps {
 export const Table = ({ columns, data }: TableProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-  const [activeBox, setActiveBox] = useState<string | null>(null);
+  const [activeLeftBox, setActiveLeftBox] = useState<string | null>(null);
+  const [activeRightBox, setActiveRightBox] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null); // New state for selected image
 
-  const handleBoxClick = (boxName: string) => {
-    setActiveBox(boxName);
-  };
-
-  const handleClose = () => {
-    setActiveBox(null);
-  };
   const options = [
     { value: "30", label: "Last 30 days" },
     { value: "60", label: "Last 60 days" },
     { value: "90", label: "Last 90 days" },
   ];
+
+  const filterOptions = {
+    Location: [
+      { value: "downtown", label: "Downtown" },
+      { value: "suburbs", label: "Suburbs" },
+      { value: "rural", label: "Rural" },
+    ],
+    "Rental Yield": [
+      { value: "low", label: "0-5%" },
+      { value: "medium", label: "5-10%" },
+      { value: "high", label: "10%+" },
+    ],
+    "Investment Score": [
+      { value: "low", label: "0-3" },
+      { value: "medium", label: "4-7" },
+      { value: "high", label: "8-10" },
+    ],
+    "Number of bedrooms": [
+      { value: "1", label: "1 Bedroom" },
+      { value: "2", label: "2 Bedrooms" },
+      { value: "3", label: "3+ Bedrooms" },
+    ],
+    ROI: [
+      { value: "low", label: "0-5%" },
+      { value: "medium", label: "5-10%" },
+      { value: "high", label: "10%+" },
+    ],
+    "Property Type": [
+      { value: "apartment", label: "Apartment" },
+      { value: "house", label: "House" },
+      { value: "condo", label: "Condo" },
+    ],
+  };
+
+  const renderFilterBox = (title: string, isLeft: boolean) => {
+    const isActive = isLeft
+      ? activeLeftBox === title
+      : activeRightBox === title;
+    const setActive = isLeft ? setActiveLeftBox : setActiveRightBox;
+
+    return (
+      <YStack gap="gap-[16px]" className="w-full">
+        <div className="w-full">
+          <Text fow={500} fos={16} className="text-white">
+            {title}
+          </Text>
+          <div
+            className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]"
+            onClick={() => setActive(isActive ? null : title)}
+          >
+            <Text fow={400} fos={16} className="text-white">
+              {isActive
+                ? "Click to close selection"
+                : `Click to select ${title.toLowerCase()}`}
+            </Text>
+          </div>
+        </div>
+        {isActive && (
+          <div className="w-full h-[327px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
+            <YStack gap="gap-[8px]" align="start">
+              {filterOptions[title as keyof typeof filterOptions].map(
+                (option) => (
+                  <XStack
+                    className="border-b p-4 w-full border-[#FFFFFF1A]"
+                    key={option.value}
+                    gap="gap-[8px]"
+                    align="center"
+                  >
+                    <input
+                      type="checkbox"
+                      id={`${title}-${option.value}`}
+                      className="w-4 h-4 appearance-none bg-transparent border border-primary rounded-[4px] cursor-pointer checked:bg-primary checked:border-primary transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+                    />
+                    <label
+                      htmlFor={`${title}-${option.value}`}
+                      className="text-white fow-400 fos-16"
+                    >
+                      {option.label}
+                    </label>
+                  </XStack>
+                )
+              )}
+            </YStack>
+          </div>
+        )}
+      </YStack>
+    );
+  };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -45,8 +128,27 @@ export const Table = ({ columns, data }: TableProps) => {
     )
   );
 
+  const handleImageClick = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const closeImagePopup = () => {
+    setSelectedImage(null);
+  };
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [selectedImage]);
+
   return (
-    <div className="w-full border border-[#ABABAB33] rounded-[8px] overflow-hidden">
+    <div className="w-full border border-[#ABABAB33] rounded-[8px] overflow-hidden relative">
       <XStack gap="gap-[16px]" className="mx-6 h-[96px] items-center">
         <select
           value="30"
@@ -102,7 +204,19 @@ export const Table = ({ columns, data }: TableProps) => {
                 {columns.map((column, colIndex) => (
                   <td key={colIndex} className="p-4">
                     {column.render ? (
-                      column.render(row[column.accessor], row)
+                      <div
+                        onClick={() => {
+                          const value = row[column.accessor];
+                          if (
+                            typeof value === "string" &&
+                            value.match(/\.(jpeg|jpg|gif|png)$/)
+                          ) {
+                            handleImageClick(value);
+                          }
+                        }}
+                      >
+                        {column.render(row[column.accessor], row)}
+                      </div>
                     ) : (
                       <Text fow={500} fos={16} className="text-white">
                         {row[column.accessor]}
@@ -122,86 +236,77 @@ export const Table = ({ columns, data }: TableProps) => {
         </div>
       )}
 
+      {selectedImage && (
+        <div
+          className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out"
+          onClick={closeImagePopup}
+        >
+          <div
+            className="relative max-w-[80%] max-h-[80%] transition-all duration-300 ease-in-out transform scale-100"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage}
+              alt="Enlarged view"
+              className="max-w-full max-h-full object-contain rounded-[8px]"
+            />
+            <button
+              className="absolute top-2 right-2 w-8 h-8 bg-[#3D3D3D] text-white rounded-full flex items-center justify-center"
+              onClick={closeImagePopup}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+
       <Modal
         isOpen={isFilterModalOpen}
-        onClose={() => setIsFilterModalOpen(false)}
+        onClose={() => {
+          setIsFilterModalOpen(false);
+          setActiveLeftBox(null);
+          setActiveRightBox(null);
+        }}
         title="Filters"
       >
         <div className="w-[960px] h-[615px] py-7 px-[56px] rounded-[12px] bg-[#292929]">
           <XStack align="center" justify="between" className="mb-4">
-            <Text fow={700} fos={32} className=" text-white">
+            <Text fow={700} fos={32} className="text-white">
               Filters
             </Text>
-            <Text fow={500} fos={20} className="cursor-pointer text-primary">
+            <Text
+              fow={500}
+              fos={20}
+              className="cursor-pointer text-primary"
+              onClick={() => setIsFilterModalOpen(false)}
+            >
               Apply Filters
             </Text>
           </XStack>
           <XStack justify="between" className="mb-4">
             <YStack gap="gap-[16px]" className="w-[48%]">
-              <PriceRangeFilter />
-              <div className="w-full">
-                <Text fow={500} fos={16} className="text-white ">
-                  Location
-                </Text>
-                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
-                  <Text fow={400} fos={16} className="text-white">
-                    Click to select location
-                  </Text>
-                </div>
-              </div>
-              <div className="w-full">
-                <Text fow={500} fos={16} className="text-white ">
-                  Rental Yield
-                </Text>
-                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
-                  <Text fow={400} fos={16} className="text-white">
-                    Click to select rental yield
-                  </Text>
-                </div>
-              </div>
-              <div className="w-full">
-                <Text fow={500} fos={16} className="text-white ">
-                  Investment Score
-                </Text>
-                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
-                  <Text fow={400} fos={16} className="text-white">
-                    Click to select investment score
-                  </Text>
-                </div>
-              </div>
+              {!activeLeftBox && <PriceRangeFilter />}
+              {!activeLeftBox ? (
+                <>
+                  {renderFilterBox("Location", true)}
+                  {renderFilterBox("Rental Yield", true)}
+                  {renderFilterBox("Investment Score", true)}
+                </>
+              ) : (
+                renderFilterBox(activeLeftBox, true)
+              )}
             </YStack>
             <YStack gap="gap-[16px]" className="w-[48%]">
-              <div className="w-full h-[64px] mt-[80px]"></div>
-              <div className="w-full">
-                <Text fow={500} fos={16} className="text-white ">
-                  Number of bedrooms
-                </Text>
-                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
-                  <Text fow={400} fos={16} className="text-white">
-                    Click to select number of bedrooms
-                  </Text>
-                </div>
-              </div>
-              <div className="w-full">
-                <Text fow={500} fos={16} className="text-white ">
-                  ROI
-                </Text>
-                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
-                  <Text fow={400} fos={16} className="text-white">
-                    Click to select ROI
-                  </Text>
-                </div>
-              </div>
-              <div className="w-full">
-                <Text fow={500} fos={16} className="text-white ">
-                  Property Type
-                </Text>
-                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
-                  <Text fow={400} fos={16} className="text-white">
-                    Click to select property type
-                  </Text>
-                </div>
-              </div>
+              {!activeRightBox && <div className="w-full h-[64px] mt-[80px]" />}
+              {!activeRightBox ? (
+                <>
+                  {renderFilterBox("Number of bedrooms", false)}
+                  {renderFilterBox("ROI", false)}
+                  {renderFilterBox("Property Type", false)}
+                </>
+              ) : (
+                renderFilterBox(activeRightBox, false)
+              )}
             </YStack>
           </XStack>
         </div>

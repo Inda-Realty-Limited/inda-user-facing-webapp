@@ -6,6 +6,7 @@ interface SelectProps {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   label?: string;
   className?: string;
+  labelStyle?: string;
 }
 
 export const Select = ({
@@ -14,10 +15,18 @@ export const Select = ({
   onChange,
   label,
   className = "",
+  labelStyle = "",
 }: SelectProps) => {
   return (
     <div className="flex flex-col">
-      {label && <Text className="mb-1">{label}</Text>}
+      {label && (
+        <Text
+          fow={500}
+          className={`text-[#fff] mb-[12px] text-[16px] ${labelStyle}`}
+        >
+          {label}
+        </Text>
+      )}
       <select
         value={value}
         onChange={onChange}

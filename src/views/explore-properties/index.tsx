@@ -1,4 +1,4 @@
-import { Input, Text, YStack } from "@/components/base";
+import { Button, Input, Text, YStack } from "@/components/base";
 import { Breadcrumb, Icon, Modal, Table, Tooltip } from "@/components/inc";
 import { Property, properties } from "@/constants/data";
 import { Layout } from "@/layouts";
@@ -9,6 +9,66 @@ export default function ExploreProperties() {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(
     null
   );
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [budget, setBudget] = useState("");
+  const [financingOption, setFinancingOption] = useState("");
+
+  const inputFields = [
+    {
+      label: "Name",
+      type: "text",
+      value: name,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        setName(e.target.value),
+      placeholder: "Enter your name",
+    },
+    {
+      label: "Email",
+      type: "email",
+      value: email,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        setEmail(e.target.value),
+      placeholder: "Enter your email",
+    },
+    {
+      label: "Phone Number",
+      type: "tel",
+      value: phone,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        setPhone(e.target.value),
+      placeholder: "Enter your phone number",
+    },
+    {
+      label: "Would you require financing?",
+      type: "text",
+      value: budget,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        setBudget(e.target.value),
+      placeholder: "What is your budget?",
+    },
+  ];
+
+  const financingOptions = [
+    { value: "mortgage", label: "I need a mortgage (bank financing)" },
+    {
+      value: "developer-plan",
+      label:
+        "I prefer a developer’s flexible payment plan (e.g., 12-36 months)",
+    },
+    {
+      value: "rent-to-own",
+      label:
+        "I’m interested in a rent-to-own option (pay while living in the home)",
+    },
+    {
+      value: "joint-investment",
+      label:
+        "I want a joint investment option (co-buying with a partner or investor)",
+    },
+    { value: "full-payment", label: "I’m ready for full payment" },
+  ];
 
   interface Column {
     header: React.ReactNode;
@@ -140,39 +200,68 @@ export default function ExploreProperties() {
         title="Make an Offer"
       >
         <div className="w-[555px] h-[819px] p-6 rounded-[12px] bg-[#292929]">
-          <div className="w-[476px]"></div>
-          <YStack gap="gap-[16px]" align="start">
-            <Text
-              fow={700}
-              fos={32}
-              className="text-white text-center pt-[30px]"
+          <div className="w-[476px]">
+            <YStack
+              gap="gap-[16px]"
+              className="w-[412px] mx-[40px]"
+              align="start"
             >
-              We'll be in touch
-            </Text>
-            <Input
-              label="Name"
-              value=""
-              onChange={() => {}}
-              placeholder="Enter your name"
-              className="w-full mt-4"
-            />
-            <Input
-              label="Email"
-              type="email"
-              value=""
-              onChange={() => {}}
-              placeholder="Enter your email"
-              className="w-full"
-            />
-            <Input
-              label="Phone"
-              type="tel"
-              value=""
-              onChange={() => {}}
-              placeholder="Enter your phone number"
-              className="w-full"
-            />
-          </YStack>
+              <Text
+                fow={700}
+                fos={32}
+                className="text-white text-center pt-[30px]"
+              >
+                We'll be in touch
+              </Text>
+              {inputFields.map((field, index) => (
+                <Input
+                  key={index}
+                  label={field.label}
+                  type={field.type}
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder={field.placeholder}
+                  className="w-[412px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px] outline-none focus:outline-none"
+                />
+              ))}
+              <div className="flex flex-col w-full">
+                <label className="mb-1 text-white">Financing Option</label>
+                <select
+                  value={financingOption}
+                  onChange={(e) => setFinancingOption(e.target.value)}
+                  className="w-full h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px] px-3 py-2 outline-none focus:ring-2 focus:ring-primary"
+                >
+                  {financingOptions.map((option) => (
+                    <option
+                      className="w-[412px]"
+                      key={option.value}
+                      value={option.value}
+                    >
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <Button
+                variant="primary"
+                textClassName="text-white"
+                className="w-full mt-2 h-[64px] bg-primary text-white rounded-[8px]"
+                onClick={() => {
+                  // Handle form submission logic here
+                  console.log("Form submitted", {
+                    name,
+                    email,
+                    phone,
+                    budget,
+                    financingOption,
+                  });
+                  setIsModalOpen(false);
+                }}
+              >
+                Submit
+              </Button>
+            </YStack>
+          </div>
         </div>
       </Modal>
     </Layout>

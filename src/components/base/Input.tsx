@@ -9,6 +9,7 @@ interface InputProps {
   placeholder?: string;
   label?: string;
   className?: string;
+  labelStyle?: string;
 }
 
 export const Input = ({
@@ -19,10 +20,18 @@ export const Input = ({
   label,
   className = "",
   icon = false,
+  labelStyle = "",
 }: InputProps) => {
   return (
     <div className="flex flex-col">
-      {label && <Text className="mb-1">{label}</Text>}
+      {label && (
+        <Text
+          fow={500}
+          className={`text-[#fff] mb-[12px] text-[16px] ${labelStyle}`}
+        >
+          {label}
+        </Text>
+      )}
       <div className="relative">
         {icon && (
           <div className="absolute inset-y-0 left-4 top-2 flex items-center text-[#FFFFFFBF]">

@@ -1,5 +1,6 @@
-import { Input, Text, XStack } from "@/components/base";
-import { Select } from "@/components/base/Select";
+import { Input, Text, XStack, YStack } from "@/components/base";
+import { Modal } from "@/components/inc/Modal";
+import PriceRangeFilter from "@/views/explore-properties/components/PriceRangeFilter";
 import { ReactNode, useState } from "react";
 import { Icon } from "./Icon";
 
@@ -16,6 +17,16 @@ interface TableProps {
 
 export const Table = ({ columns, data }: TableProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [activeBox, setActiveBox] = useState<string | null>(null);
+
+  const handleBoxClick = (boxName: string) => {
+    setActiveBox(boxName);
+  };
+
+  const handleClose = () => {
+    setActiveBox(null);
+  };
   const options = [
     { value: "30", label: "Last 30 days" },
     { value: "60", label: "Last 60 days" },
@@ -37,18 +48,23 @@ export const Table = ({ columns, data }: TableProps) => {
   return (
     <div className="w-full border border-[#ABABAB33] rounded-[8px] overflow-hidden">
       <XStack gap="gap-[16px]" className="mx-6 h-[96px] items-center">
-        <Select
-          options={options}
+        <select
           value="30"
           onChange={(e) => console.log(e.target.value)}
           className="bg-background text-white px-4 py-2 rounded"
-        />
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
 
         <XStack
           align="center"
           className="border border-[#ABABAB33] cursor-pointer h-[40px] text-white w-[120px] justify-center rounded"
         >
-          <Text fow={400} fos={16}>
+          <Text fow={400} fos={16} onClick={() => setIsFilterModalOpen(true)}>
             Filters
           </Text>
           <Icon name="filter" className="mt-2" />
@@ -105,6 +121,91 @@ export const Table = ({ columns, data }: TableProps) => {
           </Text>
         </div>
       )}
+
+      <Modal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        title="Filters"
+      >
+        <div className="w-[960px] h-[615px] py-7 px-[56px] rounded-[12px] bg-[#292929]">
+          <XStack align="center" justify="between" className="mb-4">
+            <Text fow={700} fos={32} className=" text-white">
+              Filters
+            </Text>
+            <Text fow={500} fos={20} className="cursor-pointer text-primary">
+              Apply Filters
+            </Text>
+          </XStack>
+          <XStack justify="between" className="mb-4">
+            <YStack gap="gap-[16px]" className="w-[48%]">
+              <PriceRangeFilter />
+              <div className="w-full">
+                <Text fow={500} fos={16} className="text-white ">
+                  Location
+                </Text>
+                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
+                  <Text fow={400} fos={16} className="text-white">
+                    Click to select location
+                  </Text>
+                </div>
+              </div>
+              <div className="w-full">
+                <Text fow={500} fos={16} className="text-white ">
+                  Rental Yield
+                </Text>
+                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
+                  <Text fow={400} fos={16} className="text-white">
+                    Click to select rental yield
+                  </Text>
+                </div>
+              </div>
+              <div className="w-full">
+                <Text fow={500} fos={16} className="text-white ">
+                  Investment Score
+                </Text>
+                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
+                  <Text fow={400} fos={16} className="text-white">
+                    Click to select investment score
+                  </Text>
+                </div>
+              </div>
+            </YStack>
+            <YStack gap="gap-[16px]" className="w-[48%]">
+              <div className="w-full h-[64px] mt-[80px]"></div>
+              <div className="w-full">
+                <Text fow={500} fos={16} className="text-white ">
+                  Number of bedrooms
+                </Text>
+                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
+                  <Text fow={400} fos={16} className="text-white">
+                    Click to select number of bedrooms
+                  </Text>
+                </div>
+              </div>
+              <div className="w-full">
+                <Text fow={500} fos={16} className="text-white ">
+                  ROI
+                </Text>
+                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
+                  <Text fow={400} fos={16} className="text-white">
+                    Click to select ROI
+                  </Text>
+                </div>
+              </div>
+              <div className="w-full">
+                <Text fow={500} fos={16} className="text-white ">
+                  Property Type
+                </Text>
+                <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[32px] h-[64px] bg-[#3D3D3D] text-white border-[#FFFFFF1A] rounded-[8px]">
+                  <Text fow={400} fos={16} className="text-white">
+                    Click to select property type
+                  </Text>
+                </div>
+              </div>
+            </YStack>
+          </XStack>
+        </div>
+      </Modal>
     </div>
   );
 };

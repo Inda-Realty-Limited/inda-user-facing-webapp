@@ -13,8 +13,8 @@ const socialIcons: Array<
 export const Layout = ({ children }: LayoutProps) => {
   const getCurrentYear = () => new Date().getFullYear();
   return (
-    <div className="relative flex flex-col py-6 min-h-screen">
-      <Navbar className="mt-4" showLogo={true} />
+    <div className="relative flex flex-col  min-h-screen">
+      <Navbar showLogo={true} />
       <main className="w-full px-[80px] py-[40px] flex flex-col   flex-grow mt-16">
         {children}
       </main>

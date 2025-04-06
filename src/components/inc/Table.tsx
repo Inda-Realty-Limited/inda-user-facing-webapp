@@ -68,7 +68,7 @@ export const Table = ({ columns, data }: TableProps) => {
     const setActive = isLeft ? setActiveLeftBox : setActiveRightBox;
 
     return (
-      <YStack gap="gap-[16px]" className="w-full">
+      <YStack gap="gap-[16px]" className="w-full ">
         <div className="w-full">
           <Text fow={500} fos={16} className="text-white">
             {title}

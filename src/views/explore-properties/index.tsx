@@ -177,7 +177,7 @@ export default function ExploreProperties() {
   return (
     <Layout>
       <div className="relative w-full h-full">
-        <div className="absolute top-0 left-0 justify-center flex">
+        <div className="absolute -top-24 w-full left-0 justify-center flex">
           <img
             src="/images/bg-pattern.png"
             alt="Explore Properties"
@@ -186,7 +186,7 @@ export default function ExploreProperties() {
         </div>
         <Breadcrumb items={[{ label: "Explore Properties" }]} />
 
-        <section className="my-[60px]">
+        <section className="my-[60px] mb-30 relative z-50">
           <YStack gap="gap-[16px]">
             <Text fow={700} fos={48} className="text-white text-center">
               Smart Investments Start Here <br /> Discover Profitable Properties
@@ -198,7 +198,7 @@ export default function ExploreProperties() {
           </YStack>
         </section>
 
-        <section className="my-[40px]">
+        <section className="my-[45px]">
           <Table columns={columns} data={properties} />
         </section>
 

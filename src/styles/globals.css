@@ -375,3 +375,11 @@ body {
 .no-scroll {
   overflow: hidden;
 }
+
+.overflow-y-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-y-scroll {
+  scrollbar-width: none;
+}

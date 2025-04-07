@@ -19,8 +19,7 @@ export const Breadcrumb = ({ items }: BreadcrumbProps) => {
         underlined
         fow={400}
         fof="l"
-        fos={18}
-        className="text-white cursor-pointer"
+        className="text-white cursor-pointer text-[16px] max-sm:text-[14px]"
         onClick={() => router.push("/")}
       >
         Home
@@ -33,14 +32,17 @@ export const Breadcrumb = ({ items }: BreadcrumbProps) => {
               underlined
               fow={400}
               fof="l"
-              fos={18}
-              className="text-white cursor-pointer"
+              className="text-white cursor-pointer text-[16px] max-sm:text-[14px]"
               onClick={() => item.href && router.push(item.href)}
             >
               {item.label}
             </Text>
           ) : (
-            <Text fow={400} fof="l" fos={18} className="text-white">
+            <Text
+              fow={400}
+              fof="l"
+              className="text-white text-[16px] max-sm:text-[14px]"
+            >
               {item.label}
             </Text>
           )}

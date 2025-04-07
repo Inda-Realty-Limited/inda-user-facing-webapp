@@ -4,11 +4,10 @@ import { useState } from "react";
 import { Text, XStack } from "../base";
 
 interface NavbarProps {
-  className?: string;
   showLogo?: boolean;
 }
 
-export const Navbar = ({ className = "", showLogo = false }: NavbarProps) => {
+export const Navbar = ({ showLogo = false }: NavbarProps) => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -53,10 +52,10 @@ export const Navbar = ({ className = "", showLogo = false }: NavbarProps) => {
               ☰
             </button>
           </div>
-          <XStack
+          <div
             className={`gap-[12px] md:gap-[18px] md:flex ${
-              menuOpen ? "flex" : "hidden"
-            } flex-col md:flex-row absolute md:static top-[70px] left-0 w-full md:w-auto bg-[#141414] md:bg-transparent z-50 md:z-auto`}
+              menuOpen ? "flex flex-col" : "hidden"
+            } absolute md:static top-[70px] left-0 w-full md:w-auto bg-[#141414] md:bg-transparent z-50 md:z-auto`}
           >
             {navItems.map((item) => {
               const isActive = router.pathname === item.href;
@@ -73,14 +72,14 @@ export const Navbar = ({ className = "", showLogo = false }: NavbarProps) => {
                   }`}
                   onClick={() => {
                     router.push(item.href);
-                    setMenuOpen(false); // Close menu on navigation
+                    setMenuOpen(false);
                   }}
                 >
                   {item.label}
                 </Text>
               );
             })}
-          </XStack>
+          </div>
         </XStack>
       </nav>
     );
@@ -95,7 +94,7 @@ export const Navbar = ({ className = "", showLogo = false }: NavbarProps) => {
             <Text
               key={item.href}
               fof="s"
-              className={`text-[20px] font-${
+              className={`text-[20px] max-sm:text-[10px] font-${
                 isActive ? "semibold" : "normal"
               } cursor-pointer transition-colors ${
                 isActive ? "text-white" : "text-[#FFFFFF99] hover:text-gray-400"

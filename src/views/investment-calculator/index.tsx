@@ -156,11 +156,11 @@ export default function InvestmentCalculator() {
             <Text fow={400} fof="s" fos={20} className="text-[#FFFFFFBF]">
               Optimize your financial future with our investment calculator.
               Designed for accuracy and ease, it helps you analyze potential
-              returns, assess risks, and make informed decisions. Whether you're
-              planning for retirement, growing your wealth, or exploring new
-              opportunities, our tool provides insights tailored to your goals.
-              Take control of your investments today and make smarter,
-              data-driven choices with confidence.
+              returns, assess risks, and make informed decisions. Whether
+              you&apos;re planning for retirement, growing your wealth, or
+              exploring new opportunities, our tool provides insights tailored
+              to your goals. Take control of your investments today and make
+              smarter, data-driven choices with confidence.
             </Text>
           </YStack>
           <YStack className="w-[48%]">

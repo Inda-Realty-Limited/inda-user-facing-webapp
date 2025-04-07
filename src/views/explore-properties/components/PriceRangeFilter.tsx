@@ -2,8 +2,8 @@ import { Text, XStack, YStack } from "@/components/base";
 import { useState } from "react";
 
 const PriceRangeFilter = () => {
-  const [minPrice, setMinPrice] = useState(5000);
-  const [maxPrice, setMaxPrice] = useState(50000);
+  const [minPrice] = useState(5000);
+  const [maxPrice] = useState(50000);
   const [currentPrice, setCurrentPrice] = useState(5000);
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {

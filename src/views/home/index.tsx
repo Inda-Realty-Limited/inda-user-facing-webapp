@@ -73,7 +73,10 @@ export default function Index() {
       </Container>
       <Container className="absolute bg-primary h-[120px] md:h-[142px] mt-[40px] md:mt-[63px] bottom-0 left-0 w-full flex items-center justify-center">
         <YStack className="justify-center">
-          <Text className="text-[#FFFFFFD9] md:text-[18px]" fow={500} fos={16}>
+          <Text
+            className="text-[#FFFFFFD9] text-[16px] max-sm:text-[14px] md:text-[18px]"
+            fow={500}
+          >
             Join the waitlist
           </Text>
           <XStack className="items-center -mt-4 justify-center">
@@ -82,11 +85,11 @@ export default function Index() {
               value={email}
               onChange={handleInputChange}
               placeholder="Enter your email"
-              className="w-[300px] h-[48px] text-[#FFFFFFBF] bg-[#FFFFFF1A] rounded-[8px] border border-[#FFFFFF29] focus:outline-none px-4 md:w-[370px] md:h-[52px] md:rounded-[10px]"
+              className="w-[300px] max-sm:w-[250px] h-[48px] text-[#FFFFFFBF] bg-[#FFFFFF1A] rounded-[8px] border border-[#FFFFFF29] focus:outline-none px-4 md:w-[370px] md:h-[52px] md:rounded-[10px]"
             />
             <Button
-              textClassName="text-primary"
-              className="bg-white w-[90px] h-[48px] rounded-[8px] hover:bg-[#FFFFFFE6] ml-2 md:w-[106px] md:h-[52px] md:rounded-[10px]"
+              textClassName="text-primary text-[18px] max-sm:text-[12px]"
+              className="bg-white w-[90px] max-sm:w-[80px] h-[48px] rounded-[8px] hover:bg-[#FFFFFFE6] ml-2 md:w-[106px] md:h-[52px] md:rounded-[10px]"
             >
               Sign Up
             </Button>

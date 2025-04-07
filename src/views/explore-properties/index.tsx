@@ -14,6 +14,7 @@ export default function ExploreProperties() {
   const [phone, setPhone] = useState("");
   const [budget, setBudget] = useState("");
   const [financingOption, setFinancingOption] = useState("");
+  console.log("Selected Property:", selectedProperty);
 
   const inputFields = [
     {
@@ -219,7 +220,7 @@ export default function ExploreProperties() {
                   fos={32}
                   className="text-white text-center pt-[30px]"
                 >
-                  We'll be in touch
+                  We&apos;ll be in touch
                 </Text>
                 {inputFields.map((field, index) => (
                   <Input

@@ -31,7 +31,7 @@ export const Text = ({
       ? "Lufga, sans-serif"
       : "PPNeueMontreal, sans-serif";
   const style = {
-    fontSize: fos || 16,
+    fontSize: fos,
     fontWeight: fow || "normal",
     fontStyle: fst || "normal",
     fontFamily,

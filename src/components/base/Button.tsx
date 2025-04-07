@@ -31,7 +31,7 @@ export const Button = ({
       disabled={disabled}
       className={`${baseStyles} ${variantStyles[variant]} ${className}`}
     >
-      <Text fow={500} fos={18} className={textClassName}>
+      <Text fow={500} className={textClassName}>
         {children}
       </Text>
     </button>

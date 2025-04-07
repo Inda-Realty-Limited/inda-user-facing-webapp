@@ -13,13 +13,13 @@ export default function Index() {
   };
 
   const handleGetStarted = () => {
-    router.push("/about");
+    router.push("/explore-properties");
   };
 
   return (
     <Container
       type="main"
-      className="relative  flex flex-col items-center justify-center"
+      className="relative h-screen flex flex-col items-center justify-center"
       style={{
         background: `
           linear-gradient(0deg, #141414, #141414),
@@ -27,7 +27,7 @@ export default function Index() {
         `,
       }}
     >
-      <div className="w-[90%] h-full overflow-hidden">
+      <div className="w-full h-full overflow-hidden">
         <img
           src="/images/hero-lines.png"
           alt="hero"
@@ -35,30 +35,45 @@ export default function Index() {
         />
       </div>
       <Container className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-        <div className="absolute top-[50px]">
-          <Image src="/images/logo.png" alt="logo" width={100} height={35} />
+        <div className="absolute top-[20px] md:top-[50px] mb-[20px]">
+          <Image
+            src="/images/logo.png"
+            alt="logo"
+            width={80}
+            height={28}
+            className="md:w-[100px] md:h-[35px]"
+          />
         </div>
-        <YStack gap="gap-[28px]" className="flex flex-col mt-[126px] w-[50%]">
-          <Text className="text-white text-center" fow={700} fos={60}>
+        <YStack
+          gap="gap-[16px] md:gap-[28px]"
+          className="flex flex-col w-[90%] md:w-[70%] lg:w-[50%]"
+        >
+          <Text
+            className="text-white text-center text-[60px] max-sm:text-[40px]"
+            fow={700}
+          >
             The Future of Real Estate Investing Starts Here
           </Text>
-          <Text className="text-white text-center" fow={500} fos={20}>
+          <Text
+            className="text-[#FFFFFFCC] text-center text-[20px] max-sm:text-[16px]"
+            fow={500}
+          >
             Maximize returns with data-driven property investment insights.
           </Text>
           <Button
-            textClassName="text-white"
-            className="bg-primary w-[135px] h-[52px] rounded-[10px]"
+            textClassName="text-white text-[18px] max-sm:text-[12px]"
+            className="bg-primary w-[180px] h-[48px] rounded-[8px] md:w-[219px] md:h-[52px] md:rounded-[10px]"
             onClick={handleGetStarted}
           >
-            Get Started
+            View Property Listings
           </Button>
         </YStack>
-        <Navbar className="mt-32" />
-        <Icon className="mt-6" name="double_arrow_down" />
+        <Navbar />
+        <Icon className="mt-[40px] md:mt-[68px]" name="double_arrow_down" />
       </Container>
-      <Container className="absolute bg-primary h-[142px] bottom-0 left-0 w-full flex items-center justify-center">
+      <Container className="absolute bg-primary h-[120px] md:h-[142px] mt-[40px] md:mt-[63px] bottom-0 left-0 w-full flex items-center justify-center">
         <YStack className="justify-center">
-          <Text className="text-[#FFFFFFD9]" fow={500} fos={18}>
+          <Text className="text-[#FFFFFFD9] md:text-[18px]" fow={500} fos={16}>
             Join the waitlist
           </Text>
           <XStack className="items-center -mt-4 justify-center">
@@ -67,11 +82,11 @@ export default function Index() {
               value={email}
               onChange={handleInputChange}
               placeholder="Enter your email"
-              className="w-[370px] h-[52px] text-[#FFFFFFBF] bg-[#FFFFFF1A] rounded-[10px] border border-[#FFFFFF29] focus:outline-none px-4"
+              className="w-[300px] h-[48px] text-[#FFFFFFBF] bg-[#FFFFFF1A] rounded-[8px] border border-[#FFFFFF29] focus:outline-none px-4 md:w-[370px] md:h-[52px] md:rounded-[10px]"
             />
             <Button
               textClassName="text-primary"
-              className="bg-white w-[106px] h-[52px] rounded-[10px] hover:bg-[#FFFFFFE6] ml-2"
+              className="bg-white w-[90px] h-[48px] rounded-[8px] hover:bg-[#FFFFFFE6] ml-2 md:w-[106px] md:h-[52px] md:rounded-[10px]"
             >
               Sign Up
             </Button>

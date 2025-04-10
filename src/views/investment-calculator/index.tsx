@@ -108,11 +108,11 @@ export default function InvestmentCalculator() {
                     <input
                       type="checkbox"
                       id={`${title}-${option.value}`}
-                      className=" h-4 max-sm:h-3 aspect-square appearance-none bg-transparent border border-primary rounded-[4px] cursor-pointer checked:bg-primary checked:border-primary transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+                      className="w-4 h-4 appearance-none bg-transparent border border-primary rounded-[4px] cursor-pointer checked:bg-primary checked:border-primary transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
                     />
                     <label
                       htmlFor={`${title}-${option.value}`}
-                      className="text-white fow-400 fos-16 max-sm:fos-12"
+                      className="text-white fow-400 fos-16"
                     >
                       {option.label}
                     </label>
@@ -160,7 +160,7 @@ export default function InvestmentCalculator() {
           </YStack>
         </section>
 
-        <div className="px-[24px] flex flex-col md:flex-row items-start justify-between gap-[40px] max-sm:gap-[20px] ">
+        <div className="px-[24px] w-full flex items-start justify-between max-sm:flex-col gap-[40px] max-sm:gap-[20px] mt-[60px] mb-[80px]">
           <div className="items-start flex-col flex gap-[32px] w-[40%] max-sm:w-full">
             <Text
               fow={700}

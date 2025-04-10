@@ -19,7 +19,7 @@ export default function Index() {
   return (
     <Container
       type="main"
-      className="relative h-screen flex flex-col items-center justify-center"
+      className="relative h-[974px] flex flex-col items-center justify-center"
       style={{
         background: `
           linear-gradient(0deg, #141414, #141414),
@@ -35,46 +35,49 @@ export default function Index() {
         />
       </div>
       <Container className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-        <div className="absolute top-[20px] md:top-[50px] mb-[20px]">
+        <div className="absolute top-[1.25rem] md:top-[3.125rem] mb-[1.25rem]">
           <Image
             src="/images/logo.png"
             alt="logo"
             width={80}
             height={28}
-            className="md:w-[100px] md:h-[35px]"
+            className="md:w-[6.25rem] md:h-[2.1875rem]"
           />
         </div>
         <YStack
-          gap="gap-[16px] md:gap-[28px]"
+          gap="gap-[1rem] md:gap-[1.75rem]"
           className="flex flex-col w-[90%] md:w-[70%] lg:w-[50%]"
         >
           <Text
-            className="text-white text-center text-[60px] max-sm:text-[40px]"
+            className="text-white text-center text-[3.75rem] max-sm:text-[2.5rem]"
             fow={700}
           >
             The Future of Real Estate Investing Starts Here
           </Text>
           <Text
-            className="text-[#FFFFFFCC] text-center text-[20px] max-sm:text-[16px]"
+            className="text-[#FFFFFFCC] text-center text-[1.25rem] max-sm:text-[1rem]"
             fow={500}
           >
             Maximize returns with data-driven property investment insights.
           </Text>
           <Button
-            textClassName="text-white text-[18px] max-sm:text-[12px]"
-            className="bg-primary w-[180px] h-[48px] rounded-[8px] md:w-[219px] md:h-[52px] md:rounded-[10px]"
+            textClassName="text-white text-[1.125rem] max-sm:text-[0.75rem]"
+            className="bg-primary w-[11.25rem] h-[3rem] rounded-[0.5rem] md:w-[13.6875rem] md:h-[3.25rem] md:rounded-[0.625rem]"
             onClick={handleGetStarted}
           >
             View Property Listings
           </Button>
         </YStack>
         <Navbar />
-        <Icon className="mt-[40px] md:mt-[68px]" name="double_arrow_down" />
+        <Icon
+          className="mt-[2.5rem] md:mt-[4.25rem]"
+          name="double_arrow_down"
+        />
       </Container>
-      <Container className="absolute bg-primary h-[120px] md:h-[142px] mt-[40px] md:mt-[63px] bottom-0 left-0 w-full flex items-center justify-center">
+      <Container className="absolute bg-primary h-[7.5rem] md:h-[8.875rem]  bottom-0 left-0 w-full flex items-center justify-center">
         <YStack className="justify-center">
           <Text
-            className="text-[#FFFFFFD9] text-[16px] max-sm:text-[14px] md:text-[18px]"
+            className="text-[#FFFFFFD9] text-[1rem] max-sm:text-[0.875rem] md:text-[1.125rem]"
             fow={500}
           >
             Join the waitlist
@@ -85,11 +88,11 @@ export default function Index() {
               value={email}
               onChange={handleInputChange}
               placeholder="Enter your email"
-              className="w-[300px] max-sm:w-[250px] h-[48px] text-[#FFFFFFBF] bg-[#FFFFFF1A] rounded-[8px] border border-[#FFFFFF29] focus:outline-none px-4 md:w-[370px] md:h-[52px] md:rounded-[10px]"
+              className="w-[18.75rem] max-sm:w-[15.625rem] h-[3rem] text-[#FFFFFFBF] bg-[#FFFFFF1A] rounded-[0.5rem] border border-[#FFFFFF29] focus:outline-none px-4 md:w-[23.125rem] md:h-[3.25rem] md:rounded-[0.625rem]"
             />
             <Button
-              textClassName="text-primary text-[18px] max-sm:text-[12px]"
-              className="bg-white w-[90px] max-sm:w-[80px] h-[48px] rounded-[8px] hover:bg-[#FFFFFFE6] ml-2 md:w-[106px] md:h-[52px] md:rounded-[10px]"
+              textClassName="text-primary text-[1.125rem] max-sm:text-[0.75rem]"
+              className="bg-white w-[5.625rem] max-sm:w-[5rem] h-[3rem] rounded-[0.5rem] hover:bg-[#FFFFFFE6] ml-2 md:w-[6.625rem] md:h-[3.25rem] md:rounded-[0.625rem]"
             >
               Sign Up
             </Button>

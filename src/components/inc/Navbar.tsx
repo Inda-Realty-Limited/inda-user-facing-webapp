@@ -54,7 +54,7 @@ export const Navbar = ({ showLogo = false }: NavbarProps) => {
           </div>
           <div
             className={`gap-[12px] md:gap-[18px] md:flex ${
-              menuOpen ? "flex flex-col" : "hidden"
+              menuOpen ? "flex flex-col bg-primary" : "hidden"
             } absolute md:static top-[70px] left-0 w-full md:w-auto bg-[#141414] md:bg-transparent z-50 md:z-auto`}
           >
             {navItems.map((item) => {

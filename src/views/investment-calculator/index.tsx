@@ -160,7 +160,7 @@ export default function InvestmentCalculator() {
           </YStack>
         </section>
 
-        <div className="px-[24px] w-full flex items-start justify-between max-sm:flex-col gap-[40px] max-sm:gap-[20px] mt-[60px] mb-[80px]">
+        <div className="px-[24px] w-full flex items-start justify-between max-sm:flex-col max-sm:px-[5px] gap-[40px] max-sm:gap-[20px] mt-[60px] mb-[80px]">
           <div className="items-start flex-col flex gap-[32px] w-[40%] max-sm:w-full">
             <Text
               fow={700}
@@ -182,7 +182,7 @@ export default function InvestmentCalculator() {
               smarter, data-driven choices with confidence.
             </Text>
           </div>
-          <div className="w-[60%] max-sm:w-full flex flex-col items-center justify-center gap-[40px]">
+          <div className="w-[600px] max-sm:w-full flex flex-col items-center justify-center gap-[40px]">
             <div
               className="relative w-[600px] max-sm:w-full overflow-y-scroll rounded-[12px] px-[50px] py-[76px] max-sm:px-[20px]"
               style={{

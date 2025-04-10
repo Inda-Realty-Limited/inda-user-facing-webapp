@@ -187,7 +187,7 @@ export default function ExploreProperties() {
         </div>
         <Breadcrumb items={[{ label: "Explore Properties" }]} />
 
-        <section className="my-[60px] mb-30 relative z-50">
+        <section className="my-[60px] mb-30 relative z-20">
           <YStack gap="gap-[16px]">
             <Text
               fow={700}

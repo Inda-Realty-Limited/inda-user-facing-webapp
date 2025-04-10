@@ -15,10 +15,15 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="relative flex flex-col min-h-screen">
       <Navbar showLogo={true} />
-      <main className="w-full px-[20px] md:px-[40px] lg:px-[80px] py-[20px] md:py-[30px] max-sm:py-[10px] lg:py-[40px] flex flex-col flex-grow mt-16">
+      <main className="w-full px-[20px] max-sm:px-[5px] md:px-[40px] lg:px-[80px] py-[20px] md:py-[30px] max-sm:py-[10px] lg:py-[40px] flex flex-col flex-grow mt-16">
         {children}
       </main>
-      <footer className="w-full max-sm:border-0 h-auto md:h-[88px] px-[20px] md:px-[80px] lg:px-[140px] my-[20px] md:my-[28px] flex flex-col md:flex-row items-center justify-between border-t border-b border-[#322E52] text-center text-white shadow lg:backdrop-blur-[100px] lg:shadow-[0px_4px_10px_rgba(0,0,0,0.25)] lg:bg-gradient-to-r lg:from-[rgba(45,46,48,0.021)] lg:via-[rgba(82,73,97,0.016)] lg:to-[rgba(121,108,138,0.005)]">
+      <footer
+        style={{
+          borderColor: "rgba(50, 46, 82, 0.25)",
+        }}
+        className="w-full max-sm:border-0 h-auto md:h-[88px] px-[20px] md:px-[80px] lg:px-[140px] my-[20px] md:my-[28px] flex flex-col md:flex-row items-center justify-between border-t border-b border-[#322E52] text-center text-white shadow lg:backdrop-blur-[100px] lg:shadow-[0px_4px_10px_rgba(0,0,0,0.25)] lg:bg-gradient-to-r lg:from-[rgba(45,46,48,0.021)] lg:via-[rgba(82,73,97,0.016)] lg:to-[rgba(121,108,138,0.005)]"
+      >
         <XStack
           gap="gap-[10px]"
           className="justify-center flex-wrap md:flex-nowrap mb-[10px] md:mb-0"

@@ -47,10 +47,13 @@ export default function InvestmentCalculator() {
               {title}
             </Text>
             <div
-              className="w-full cursor-pointer mt-[10px] flex items-center pl-[16px] h-[77px] bg-[#282828] text-white border-[#FFFFFF1A] rounded-[8px]"
+              className="w-full cursor-pointer mt-[10px] flex items-center pl-[16px] h-[77px] bg-[#282828] text-white border-[#FFFFFF1A] rounded-[8px] max-sm:h-[54px] "
               onClick={() => setActiveFilter(isActive ? null : title)}
             >
-              <Text fow={400} fos={16} className="text-[#FFFFFFCC]">
+              <Text
+                fow={400}
+                className="text-[#FFFFFFCC] text-[16px] max-sm:text-[14px]"
+              >
                 {isActive
                   ? "Click to close map view"
                   : "Click to open map view"}
@@ -78,10 +81,13 @@ export default function InvestmentCalculator() {
             {title}
           </Text>
           <div
-            className="w-full cursor-pointer mt-[10px] flex items-center pl-[16px] h-[77px] bg-[#282828] text-white border-[#FFFFFF1A] rounded-[8px]"
+            className="w-full cursor-pointer mt-[10px] flex items-center pl-[16px] h-[77px] bg-[#282828] text-white border-[#FFFFFF1A] rounded-[8px] max-sm:h-[54px] "
             onClick={() => setActiveFilter(isActive ? null : title)}
           >
-            <Text fow={400} fos={16} className="text-[#FFFFFFCC]">
+            <Text
+              fow={400}
+              className="text-[#FFFFFFCC] text-[16px] max-sm:text-[14px]"
+            >
               {isActive
                 ? "Click to close selection"
                 : `Click to select ${title.toLowerCase()}`}
@@ -102,11 +108,11 @@ export default function InvestmentCalculator() {
                     <input
                       type="checkbox"
                       id={`${title}-${option.value}`}
-                      className="w-4 h-4 appearance-none bg-transparent border border-primary rounded-[4px] cursor-pointer checked:bg-primary checked:border-primary transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+                      className=" h-4 max-sm:h-3 aspect-square appearance-none bg-transparent border border-primary rounded-[4px] cursor-pointer checked:bg-primary checked:border-primary transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
                     />
                     <label
                       htmlFor={`${title}-${option.value}`}
-                      className="text-white fow-400 fos-16"
+                      className="text-white fow-400 fos-16 max-sm:fos-12"
                     >
                       {option.label}
                     </label>
@@ -132,10 +138,16 @@ export default function InvestmentCalculator() {
 
         <section className="my-[60px] mb-30 relative z-50">
           <YStack gap="gap-[16px]">
-            <Text fow={700} fos={48} className="text-white text-center">
+            <Text
+              fow={700}
+              className="text-white text-center text-[48px] max-sm:text-[32px]"
+            >
               How much is my <br /> Property Worth?
             </Text>
-            <Text fow={500} fos={20} className="text-white text-center">
+            <Text
+              fow={500}
+              className="text-white text-center text-[20px] max-sm:text-[16px]"
+            >
               Gain insights into potential returns, rental yields, and property
               appreciation—helping you invest <br /> with confidence.
             </Text>
@@ -148,12 +160,19 @@ export default function InvestmentCalculator() {
           </YStack>
         </section>
 
-        <XStack className="px-[24px]" justify="between" align="start">
-          <YStack gap="gap-[32px]" className="items-start w-[48%]">
-            <Text fow={700} fos={40} className="text-white">
+        <div className="px-[24px] flex flex-col md:flex-row items-start justify-between gap-[40px] max-sm:gap-[20px] ">
+          <div className="items-start flex-col flex gap-[32px] w-[40%] max-sm:w-full">
+            <Text
+              fow={700}
+              className="text-white text-[40px] max-sm:text-[28px]"
+            >
               Make Smarter Investment Decisions
             </Text>
-            <Text fow={400} fof="s" fos={20} className="text-[#FFFFFFBF]">
+            <Text
+              fow={400}
+              fof="s"
+              className="text-[#FFFFFFBF] text-[20px] max-sm:text-[16px]"
+            >
               Optimize your financial future with our investment calculator.
               Designed for accuracy and ease, it helps you analyze potential
               returns, assess risks, and make informed decisions. Whether
@@ -162,10 +181,10 @@ export default function InvestmentCalculator() {
               to your goals. Take control of your investments today and make
               smarter, data-driven choices with confidence.
             </Text>
-          </YStack>
-          <YStack className="w-[48%]">
+          </div>
+          <div className="w-[60%] max-sm:w-full flex flex-col items-center justify-center gap-[40px]">
             <div
-              className="relative w-[600px] overflow-y-scroll rounded-[12px] px-[50px] py-[76px]"
+              className="relative w-[600px] max-sm:w-full overflow-y-scroll rounded-[12px] px-[50px] py-[76px] max-sm:px-[20px]"
               style={{
                 background:
                   "linear-gradient(109.87deg, rgba(72, 73, 77, 0.088) 5.73%, rgba(108, 96, 128, 0.0704) 50.57%, rgba(142, 131, 166, 0.022) 100.09%)",
@@ -181,19 +200,18 @@ export default function InvestmentCalculator() {
               />
               <Text
                 fow={700}
-                fos={36}
-                className="text-white text-center pt-[30px]"
+                className="text-white text-center pt-[30px] text-[36px] max-sm:text-[28px]"
               >
                 Investment Calculator
               </Text>
-              <YStack gap="gap-[20px]" className="mt-[40px] w-full">
+              <div className="mt-[40px] w-full flex flex-col gap-[32px]">
                 <Input
                   label="Input your purchase price"
                   type="number"
                   value={purchasePrice}
                   onChange={(e) => setPurchasePrice(e.target.value)}
                   placeholder="$1,500,000"
-                  className="w-[500px] h-[77px] bg-[#282828] text-white rounded-[8px] outline-none focus:outline-none"
+                  className="w-[500px] max-sm:w-full h-[77px] bg-[#282828] text-white rounded-[8px] outline-none focus:outline-none max-sm:h-[54px]"
                 />
                 {renderFilterBox("Location")}
                 {renderFilterBox("Investment Goals")}
@@ -204,16 +222,19 @@ export default function InvestmentCalculator() {
                   <Text fow={500} fos={16} className="text-white">
                     Monthly Loan Repayment
                   </Text>
-                  <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[16px] h-[77px] bg-primary text-white border-[#FFFFFF1A] rounded-[8px]">
-                    <Text fow={700} fos={24} className="text-[#FFFFFFCC]">
+                  <div className="w-full cursor-pointer mt-[10px] flex items-center pl-[16px] h-[77px] bg-primary text-white border-[#FFFFFF1A] rounded-[8px] max-sm:h-[54px] ">
+                    <Text
+                      fow={700}
+                      className="text-[#FFFFFFCC] text-[20px] max-sm:text-[16px]"
+                    >
                       $500
                     </Text>
                   </div>
                 </div>
-              </YStack>
+              </div>
             </div>
-          </YStack>
-        </XStack>
+          </div>
+        </div>
 
         {isMapViewOpen && (
           <div

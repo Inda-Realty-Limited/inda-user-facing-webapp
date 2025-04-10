@@ -25,12 +25,12 @@ export const Navbar = ({ showLogo = false }: NavbarProps) => {
   if (showLogo) {
     return (
       <nav
-        className="w-full h-[70px] md:h-[86px] px-[20px] md:px-[80px] flex items-center justify-between border-b border-[#322E52] text-center text-white shadow"
+        className="w-full h-[70px] md:h-[86px] px-[20px] md:px-[80px] flex items-center justify-between border-b border-[#322E52]  text-center text-white shadow"
         style={{
-          borderBottomWidth: "0.25px",
           background:
             "linear-gradient(109.87deg, rgba(45, 46, 48, 0.021) 5.73%, rgba(82, 73, 97, 0.016) 50.57%, rgba(121, 108, 138, 0.005) 100.09%)",
           backdropFilter: "blur(100px)",
+          borderColor: "rgba(50, 46, 82, 0.25)",
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)",
         }}
       >

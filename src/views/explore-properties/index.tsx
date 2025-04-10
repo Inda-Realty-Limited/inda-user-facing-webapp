@@ -189,10 +189,17 @@ export default function ExploreProperties() {
 
         <section className="my-[60px] mb-30 relative z-50">
           <YStack gap="gap-[16px]">
-            <Text fow={700} fos={48} className="text-white text-center">
-              Smart Investments Start Here <br /> Discover Profitable Properties
+            <Text
+              fow={700}
+              className="text-white text-center text-[48px] max-sm:text-[28px]"
+            >
+              Smart Investments Start Here <br className="max-sm:hidden" />{" "}
+              Discover Profitable Properties
             </Text>
-            <Text fow={500} fos={20} className="text-white text-center">
+            <Text
+              fow={500}
+              className="text-white text-center text-[20px] max-sm:text-[16px]"
+            >
               Browse high-yield properties and make data-driven investment
               decisions with confidence
             </Text>

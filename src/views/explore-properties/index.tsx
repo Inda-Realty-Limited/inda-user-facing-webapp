@@ -345,7 +345,7 @@ export default function ExploreProperties() {
                     fos={32}
                     className="text-white text-center pt-[30px] max-sm:pt-4 max-sm:text-2xl"
                   >
-                    We'll be in touch
+                    We&apos;ll be in touch
                   </Text>
                 </motion.div>
                 {inputFields.map((field, index) => (

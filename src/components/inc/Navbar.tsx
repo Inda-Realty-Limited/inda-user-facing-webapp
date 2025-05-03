@@ -3,11 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Text, XStack } from "../base";
 
-interface NavbarProps {
-  showLogo?: boolean;
-}
-
-export const Navbar = ({ showLogo = false }: NavbarProps) => {
+export const Navbar = () => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 

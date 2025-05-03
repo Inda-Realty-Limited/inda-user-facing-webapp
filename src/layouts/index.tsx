@@ -16,7 +16,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="relative flex flex-col min-h-screen">
-      <Navbar showLogo={true} />
+      <Navbar />
 
       <main className="w-full px-[20px] md:px-[40px] lg:px-[80px] py-[20px] md:py-[30px] max-sm:py-[10px] lg:py-[40px] flex flex-col flex-grow mt-16">
         {children}

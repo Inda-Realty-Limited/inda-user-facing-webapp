@@ -24,26 +24,25 @@ export const Navbar = ({ showLogo = false }: NavbarProps) => {
 
   return (
     <nav
-      className="w-full h-[70px] md:h-[86px] px-[20px] md:px-[80px] flex items-center justify-between border-b border-[#322E52] text-center text-white shadow"
+      className={`w-full ${
+        menuOpen ? "h-[300px]" : "h-[70px]"
+      } md:h-[86px] px-[20px] md:px-[80px] flex items-center justify-between border-b border-[#322E52] text-center text-white shadow`}
       style={{
         background:
           "linear-gradient(109.87deg, rgba(45, 46, 48, 0.021) 5.73%, rgba(82, 73, 97, 0.016) 50.57%, rgba(121, 108, 138, 0.005) 100.09%)",
         backdropFilter: "blur(100px)",
         borderColor: "rgba(50, 46, 82, 0.25)",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)",
       }}
     >
       <XStack className="justify-between w-full items-center">
         <div className="mr-4">
-          {showLogo && (
-            <Image
-              src="/images/logo.png"
-              alt="logo"
-              width={40}
-              height={14}
-              className="w-[50px] h-[17px]"
-            />
-          )}
+          <Image
+            src="/images/logo.png"
+            alt="logo"
+            width={40}
+            height={14}
+            className="w-[50px] h-[17px]"
+          />
         </div>
         <div className="md:hidden">
           <button
@@ -53,11 +52,10 @@ export const Navbar = ({ showLogo = false }: NavbarProps) => {
             ☰
           </button>
         </div>
-
         <div
           className={`gap-[12px] md:gap-[18px] md:flex ${
-            menuOpen ? "flex flex-col px-[12px] " : "hidden"
-          } absolute  top-[70px] left-0 w-full md:w-auto bg-[#141414] z-50 max-sm:z-50`}
+            menuOpen ? "flex flex-col" : "hidden"
+          } absolute md:static top-[70px] left-0 w-full md:w-auto bg-[#141414] md:bg-transparent z-50 md:z-auto`}
         >
           {navItems.map((item) => {
             const isActive = router.pathname === item.href;
@@ -65,13 +63,13 @@ export const Navbar = ({ showLogo = false }: NavbarProps) => {
               <Text
                 key={item.href}
                 fof="s"
-                className={`text-[16px] font-${isActive ? "bold" : "normal"} 
-                ${menuOpen ? "py-[12px] text-left" : "py-[16px]"}
-                cursor-pointer px-[8px] md:px-[12px] transition-colors ${
+                className={`text-[16px] font-${
+                  isActive ? "bold" : "normal"
+                } cursor-pointer px-[8px] md:px-[12px] transition-colors ${
                   isActive
                     ? "text-white"
                     : "text-[#FFFFFFB2] hover:text-gray-300"
-                } ${menuOpen && isActive ? "bg-primary rounded-md" : ""}`}
+                }`}
                 onClick={() => {
                   router.push(item.href);
                   setMenuOpen(false);

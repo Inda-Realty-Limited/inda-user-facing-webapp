@@ -1,10 +1,32 @@
+import { getAllPropertyListings } from "@/api";
 import { Button, Input, Text, YStack } from "@/components/base";
 import { Breadcrumb, Icon, Modal, Table, Tooltip } from "@/components/inc";
-import { Property, properties } from "@/constants/data";
+import { Property } from "@/constants/data";
 import { Layout } from "@/layouts";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
+
+// Utility function to generate random prices
+const generateRandomPrice = (min: number, max: number): string => {
+  const random = Math.floor(Math.random() * (max - min + 1)) + min;
+  return `N${random.toLocaleString()}`;
+};
+
+// List of possible investment scores
+const investmentScores = [
+  "High Yield Low Risk",
+  "Cash Flow King",
+  "Below Market Deal",
+  "Fast Appreciation",
+  "Hot Demand",
+];
+
+// Utility function to pick a random investment score
+const getRandomInvestmentScore = (): string => {
+  return investmentScores[Math.floor(Math.random() * investmentScores.length)];
+};
 
 const imageVariants = {
   hidden: { opacity: 0 },
@@ -52,7 +74,6 @@ const inputVariants = {
   }),
 };
 
-// New animation variants for button hover and tap
 const buttonVariants = {
   hover: { scale: 1.05, transition: { duration: 0.2 } },
   tap: { scale: 0.95, transition: { duration: 0.1 } },
@@ -68,7 +89,25 @@ export default function ExploreProperties() {
   const [phone, setPhone] = useState("");
   const [budget, setBudget] = useState("");
   const [financingOption, setFinancingOption] = useState("");
-  console.log("Selected Property:", selectedProperty);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["properties"],
+    queryFn: getAllPropertyListings,
+    select: (response) =>
+      response.data.map((property, index) => ({
+        id: property.Id,
+        image: `https://picsum.photos/200/300?random=${index + 1}`, // Random Lorem Picsum image
+        address: property.address,
+        type: property.propertyType,
+        price: generateRandomPrice(1000000, 50000000), // Random price: N1M–N50M
+        rentalIncome: generateRandomPrice(500000, 5000000), // Random: N500K–N5M
+        oneYearReturn: generateRandomPrice(100000, 1000000), // Random: N100K–N1M
+        fiveYearReturn: generateRandomPrice(500000, 5000000), // Random: N500K–N5M
+        investmentScore: getRandomInvestmentScore(), // Random score
+      })),
+  });
+
+  const properties = data || [];
 
   const inputFields = [
     {
@@ -162,32 +201,7 @@ export default function ExploreProperties() {
                 align="start"
                 className="overflow-hidden h-full w-full text-white"
               >
-                {[
-                  {
-                    title: "High Yield Low Risk",
-                    description: "Strong rental returns with minimal downside",
-                  },
-                  {
-                    title: "Cash Flow King",
-                    description:
-                      "Exceptional rental yield, ideal for passive income",
-                  },
-                  {
-                    title: "Below Market Deal",
-                    description:
-                      "Priced under market value, instant equity upside",
-                  },
-                  {
-                    title: "Fast Appreciation",
-                    description:
-                      "High-growth area with strong capital gains expected",
-                  },
-                  {
-                    title: "Hot Demand",
-                    description:
-                      "Limited availability, multiple investors interested",
-                  },
-                ].map((item, index) => (
+                {investmentScores.map((item, index) => (
                   <YStack
                     key={index}
                     gap=""
@@ -195,10 +209,19 @@ export default function ExploreProperties() {
                     className="border-b p-[10px] w-full px-5 border-[#FFFFFF1A]"
                   >
                     <Text fos={14} fow={400}>
-                      {item.title}
+                      {item}
                     </Text>
                     <Text fos={12} fow={100}>
-                      {item.description}
+                      {item === "High Yield Low Risk" &&
+                        "Strong rental returns with minimal downside"}
+                      {item === "Cash Flow King" &&
+                        "Exceptional rental yield, ideal for passive income"}
+                      {item === "Below Market Deal" &&
+                        "Priced under market value, instant equity upside"}
+                      {item === "Fast Appreciation" &&
+                        "High-growth area with strong capital gains expected"}
+                      {item === "Hot Demand" &&
+                        "Limited availability, multiple investors interested"}
                     </Text>
                   </YStack>
                 ))}
@@ -302,24 +325,44 @@ export default function ExploreProperties() {
           variants={sectionVariants}
           className="my-[45px]"
         >
-          <Table
-            columns={columns}
-            data={properties.map((property, index) => ({
-              ...property,
-              rowAnimation: (
-                <motion.tr
-                  custom={index}
-                  variants={rowVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {Object.values(property).map((value, i) => (
-                    <td key={i}>{value}</td>
-                  ))}
-                </motion.tr>
-              ),
-            }))}
-          />
+          {isLoading && (
+            <div className="text-center py-4 text-white">
+              Loading properties...
+            </div>
+          )}
+          {error && (
+            <div className="text-center py-4 text-red-500">
+              Failed to fetch properties: {(error as Error).message}
+            </div>
+          )}
+          {!isLoading && !error && (
+            <Table
+              columns={columns}
+              data={properties.map((property, index) => ({
+                ...property,
+                rowAnimation: (
+                  <motion.tr
+                    custom={index}
+                    variants={rowVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {columns.map((column, i) => (
+                      <td key={i}>
+                        {column.render
+                          ? column.accessor === "actions"
+                            ? column.render(null, property)
+                            : column.render(property[column.accessor], property)
+                          : column.accessor === "actions"
+                          ? null
+                          : property[column.accessor as keyof Property]}
+                      </td>
+                    ))}
+                  </motion.tr>
+                ),
+              }))}
+            />
+          )}
         </motion.section>
 
         <Modal
@@ -345,7 +388,7 @@ export default function ExploreProperties() {
                     fos={32}
                     className="text-white text-center pt-[30px] max-sm:pt-4 max-sm:text-2xl"
                   >
-                    We&apos;ll be in touch
+                    We'll be in touch
                   </Text>
                 </motion.div>
                 {inputFields.map((field, index) => (
@@ -396,6 +439,7 @@ export default function ExploreProperties() {
                         phone,
                         budget,
                         financingOption,
+                        selectedProperty,
                       });
                       setIsModalOpen(false);
                     }}
@@ -430,11 +474,11 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
   const selectedOption = options.find((opt) => opt.value === value);
 
   return (
-    <div className="w-[412px] h-[64px]  mb-4 relative max-sm:w-full">
+    <div className="w-[412px] h-[64px] mb-4 relative max-sm:w-full">
       {label && <label className="mb-1 text-white">{label}</label>}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex justify-between items-center mt-2 cursor-pointer w-full h-full bg-[#3D3D3D] text-white  rounded-[8px] px-3 outline-none"
+        className="flex justify-between items-center mt-2 cursor-pointer w-full h-full bg-[#3D3D3D] text-white rounded-[8px] px-3 outline-none"
       >
         <span>{selectedOption?.label || "Select an option"}</span>
         <FaChevronDown size={15} />

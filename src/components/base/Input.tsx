@@ -2,6 +2,8 @@ import { Icon } from "../inc";
 import { Text } from "./Text";
 
 interface InputProps {
+  id?: string;
+  name?: string;
   type?: string;
   icon?: boolean;
   value: string | number;
@@ -13,6 +15,8 @@ interface InputProps {
 }
 
 export const Input = ({
+  id,
+  name,
   type = "text",
   value,
   onChange,
@@ -39,6 +43,8 @@ export const Input = ({
           </div>
         )}
         <input
+          id={id}
+          name={name}
           type={type}
           value={value}
           onChange={onChange}

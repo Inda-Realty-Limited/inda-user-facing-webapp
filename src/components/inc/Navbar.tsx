@@ -10,6 +10,7 @@ export const Navbar = () => {
   const navItems = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
+    { label: "Property Valuation", href: "/property-valuation" },
     { label: "Investment Calculator", href: "/investment-calculator" },
     { label: "Explore Properties", href: "/explore-properties" },
   ];
@@ -22,7 +23,7 @@ export const Navbar = () => {
     <nav
       className={`w-full ${
         menuOpen ? "h-[300px]" : "h-[70px]"
-      } md:h-[86px] px-[20px] md:px-[80px] flex items-center justify-between border-b border-[#322E52] text-center text-white shadow`}
+      } md:h-[86px] px-[20px] md:px-[80px] flex items-center justify-between border-b border-[#322E52] text-center text-white shadow relative z-50`}
       style={{
         background:
           "linear-gradient(109.87deg, rgba(45, 46, 48, 0.021) 5.73%, rgba(82, 73, 97, 0.016) 50.57%, rgba(121, 108, 138, 0.005) 100.09%)",

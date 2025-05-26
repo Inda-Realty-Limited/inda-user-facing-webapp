@@ -189,7 +189,7 @@ export default function InvestmentCalculator() {
           initial="hidden"
           animate="visible"
           variants={imageVariants}
-          className="absolute -top-24 w-full left-0 justify-center flex"
+          className="absolute -top-28 w-full left-0 justify-center flex"
         >
           <img
             src="/images/bg-pattern.png"

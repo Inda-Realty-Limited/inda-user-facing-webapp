@@ -2,14 +2,13 @@
 import { Button } from "@/components/base";
 import { Layout } from "@/layouts";
 import { motion, Variants } from "framer-motion";
-import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useState } from "react";
 
 declare global {
   interface Window {
     google: typeof google;
   }
-  var google: any;
+  let google: any;
 }
 
 interface FormData {
@@ -91,7 +90,6 @@ const PropertyValuation: React.FC = () => {
   const [processingStep, setProcessingStep] = useState(0);
 
   const [showFinalError, setShowFinalError] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const loadGoogleMapsScript = () => {

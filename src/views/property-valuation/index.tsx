@@ -669,7 +669,7 @@ const PropertyValuation: React.FC = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6 py-12 max-sm:py-8">
+        <section className="container mx-auto  py-12 max-sm:py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <motion.div
               initial="hidden"

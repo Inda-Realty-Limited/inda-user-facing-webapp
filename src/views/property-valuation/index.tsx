@@ -681,7 +681,7 @@ const PropertyValuation: React.FC = () => {
               </h2>
               <p className="text-gray-300 text-lg max-sm:text-base mt-4">
                 Our cutting-edge valuation estimator provides clear, data-driven
-                insights to help you make informed decisions whether you're
+                insights to help you make informed decisions whether you&apos;re
                 buying, selling, or renting.
               </p>
               <p className="text-gray-300 text-lg max-sm:text-base mt-4">

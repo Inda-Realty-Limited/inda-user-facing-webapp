@@ -107,6 +107,14 @@ export default function Index() {
             >
               View Property Listings
             </Button>
+            <Button
+              variant="outline"
+              textClassName="text-white text-[1.125rem] max-sm:text-[0.75rem]"
+              className="ml-4 w-[11.25rem] h-[3rem] rounded-[0.5rem] md:w-[13.6875rem] md:h-[3.25rem] md:rounded-[0.625rem]"
+              onClick={() => router.push("/property-valuation")}
+            >
+              Get Property Valuation
+            </Button>
           </motion.div>
         </YStack>
         <motion.div initial="hidden" animate="visible" variants={iconVariants}>

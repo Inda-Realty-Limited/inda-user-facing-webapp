@@ -3,7 +3,7 @@ import { Text } from "./Text";
 
 interface ButtonProps {
   children: ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "outline";
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
@@ -23,6 +23,7 @@ export const Button = ({
   const variantStyles = {
     primary: `bg-primary text-white ${className}`,
     secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300",
+    outline: `border border-primary text-primary ${className}`,
   };
 
   return (
